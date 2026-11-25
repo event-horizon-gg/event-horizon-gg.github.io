@@ -1,0 +1,20 @@
+name: Check website
+on:
+  pull_request:
+  push:
+    branches: [main, 'codex/**']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Regenerate shared pages
+        run: python3 build-pages.py
+      - name: Check generated files match source
+        run: git diff --exit-code -- dist/
+      - name: Check pages and links
+        run: python3 scripts/check-site.py
+      - name: Check JavaScript syntax
+        run: node --check dist/site.js
