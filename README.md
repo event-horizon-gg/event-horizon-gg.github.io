@@ -25,9 +25,13 @@ Keep the approved Immense hero and satellite transition. Shared pages stay minim
 
 ## Publication
 
-GitHub Pages is configured to use GitHub Actions. The landing page and legal drafts have not been deployed. Pushes and pull requests validate the source but never deploy it. The **Publish website** workflow runs manually from `main` only.
+GitHub Pages uses GitHub Actions. Pushes and pull requests validate the source but never deploy it. The **Publish website** workflow runs manually from `main` only.
 
-Before first publication:
+The default `landing` scope publishes the homepage and its assets only. Legal/support pages and their navigation links are excluded from the artifact. The `full` scope includes the shared pages and requires the publication checks below to pass.
+
+To publish the landing page, run **Publish website** from `main` with scope **landing**. The workflow builds the generated `_site/` directory and validates it before deployment.
+
+Before publishing the full site:
 
 1. Confirm the support inbox works; activate its email link and remove the setup-pending text.
 2. Complete the publisher/contact and privacy disclosures against the apps being released. Resolve any outstanding third-party processing review, retention and transfer details.
@@ -35,6 +39,6 @@ Before first publication:
 4. Run `python3 scripts/check-site.py --publish`. It deliberately rejects incomplete drafts and an inactive contact link.
 5. Merge the completed content through a pull request.
 6. Confirm Settings → Pages still uses **GitHub Actions** as the source.
-7. Run **Publish website** from `main` in Actions and verify `/`, `/privacy/`, `/terms/` and `/support/` at the public HTTPS address.
+7. Run **Publish website** from `main` in Actions with scope **full** and verify `/`, `/privacy/`, `/terms/` and `/support/` at the public HTTPS address.
 
-The deployment workflow uploads only `dist/`, using GitHub's built-in token. No domain, paid hosting or additional deployment secret is needed. Once published, use the same privacy and support URLs in the apps and App Store Connect.
+The deployment workflow uploads only the selected `_site/` artifact, using GitHub's built-in token. No domain, paid hosting or additional deployment secret is needed. Once published, use the same privacy and support URLs in the apps and App Store Connect.
