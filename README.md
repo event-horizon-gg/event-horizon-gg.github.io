@@ -25,7 +25,7 @@ Keep the approved Immense hero and satellite transition. Shared pages stay minim
 
 ## Publication
 
-GitHub Pages is intentionally not enabled yet. Pushes and pull requests validate the source but never deploy it. The **Publish website** workflow runs manually from `main` only.
+GitHub Pages is configured to use GitHub Actions. The landing page and legal drafts have not been deployed. Pushes and pull requests validate the source but never deploy it. The **Publish website** workflow runs manually from `main` only.
 
 Before first publication:
 
@@ -34,7 +34,7 @@ Before first publication:
 3. Replace review-draft dates/status with the effective date, remove `noindex,nofollow` and update `dist/robots.txt` for the public site. Regenerate the shared pages.
 4. Run `python3 scripts/check-site.py --publish`. It deliberately rejects incomplete drafts and an inactive contact link.
 5. Merge the completed content through a pull request.
-6. In Settings → Pages, choose **GitHub Actions** as the source.
+6. Confirm Settings → Pages still uses **GitHub Actions** as the source.
 7. Run **Publish website** from `main` in Actions and verify `/`, `/privacy/`, `/terms/` and `/support/` at the public HTTPS address.
 
 The deployment workflow uploads only `dist/`, using GitHub's built-in token. No domain, paid hosting or additional deployment secret is needed. Once published, use the same privacy and support URLs in the apps and App Store Connect.
