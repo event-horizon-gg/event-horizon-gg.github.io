@@ -18,3 +18,7 @@ jobs:
         run: python3 scripts/check-site.py
       - name: Check JavaScript syntax
         run: node --check dist/site.js
+      - name: Check landing-only release
+        run: |
+          python3 scripts/prepare-site.py --scope landing
+          python3 scripts/check-site.py --publish --directory _site --scope landing
